@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm ci
+          npm install
           npm run build
 
       - name: Sync build to S3
