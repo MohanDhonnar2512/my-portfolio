@@ -20,6 +20,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Sync files to S3
+      - name: Install dependencies and build
         run: |
-          aws s3 sync ./ s3://my-portfolio-github --delete --exclude ".git/*" --exclude ".github/*"
+          npm ci
+          npm run build
+
+      - name: Sync build to S3
+        run: |
+          aws s3 sync ./build s3://my-portfolio-github --delete
