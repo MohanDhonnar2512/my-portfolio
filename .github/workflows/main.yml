@@ -24,4 +24,8 @@ jobs:
         run: |
           aws s3 sync ./ s3://my-portfolio-github --delete
 
-
+      - name: Make files public
+        run: |
+          aws s3 cp s3://my-portfolio-github s3://my-portfolio-github \
+          --recursive \
+          --acl public-read
